@@ -1,4 +1,3 @@
-
 name: ci
 
 on: push
@@ -16,5 +15,5 @@ jobs:
       - name: test coinwatch command line tool
         run: |
           source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
-          source ./test_suite.sh
+          source ./test_suite.sh ${{ secrets.X_COIN_API_KEY }}
           test_x_coin_api_get_exchanges_by_date

@@ -1,13 +1,13 @@
 #!/bin/bash
 source ./.env
-# today=$(date '+%Y-%m-%d')
+x_coin_api_key=$(echo $1 | base64 --decode)
+date=$2
 
-X_coin=$(curl -s https://rest.coinapi.io/v1/exchanges \
+x_coin_payload=$(curl -s https://rest.coinapi.io/v1/exchanges \
   -X GET \
-  -H "X-CoinAPI-Key: $X_COIN_API_KEY" | \
+  -H "X-CoinAPI-Key: $x_coin_api_key" | \
   jq '.[] | "\(.name) \(.data_start)"' | \
-  grep "$1"
+  grep "$date"
 >> /dev/null)
 
-echo $X_coin
-notify-send "new" "$X_coin"
+echo $x_coin_payload
