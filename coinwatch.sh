@@ -9,4 +9,4 @@ x_coin_payload=$(curl -s https://rest.coinapi.io/v1/exchanges \
   grep "$date"
 >> /dev/null)
 
-return $x_coin_payload
+# echo $x_coin_payload
