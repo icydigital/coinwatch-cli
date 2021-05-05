@@ -3,7 +3,7 @@ test_get_list_of_exchanges_by_date () {
   printf "test_get_list_of_exchanges_by_date\n"
   X_COIN_API_KEY=$1
   PRELOAD="$(mktemp)"
-  PRELOAD=$(echo '"BTCTRADE 2015-05-17"')
+  PRELOAD=$(echo 'BTCTRADE 2015-05-17')
 
   PAYLOAD=$(./coinwatch.sh $X_COIN_API_KEY 2015-05-17)
 
