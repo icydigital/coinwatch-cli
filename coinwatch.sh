@@ -1,5 +1,4 @@
 #!/bin/bash
-source ./.env
 x_coin_api_key=$(echo $1 | base64 --decode)
 date=$2
 
