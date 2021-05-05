@@ -11,5 +11,5 @@ test_get_list_of_exchanges_by_date () {
   echo "$PRELOAD"
   diff -u <(echo "$PAYLOAD") <(echo "$PRELOAD")
 
-  assert_equal $PAYLOAD $PRELOAD
+  assert_equal $PAYLOAD "$PRELOAD"
 }
