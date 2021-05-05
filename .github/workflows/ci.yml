@@ -1,0 +1,20 @@
+
+name: ci
+
+on: push
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone the repo
+        uses: actions/checkout@v2.3.4
+
+      - name: test coinwatch command line tool
+        run: |
+          source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
+          source ./test_suite.sh
+          test_x_coin_api_get_exchanges_by_date()
