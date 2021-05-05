@@ -17,4 +17,4 @@ jobs:
         run: |
           source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
           source ./test_suite.sh
-          test_x_coin_api_get_exchanges_by_date()
+          test_x_coin_api_get_exchanges_by_date
