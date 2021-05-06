@@ -4,11 +4,11 @@ get_x_coin_data() {
   date=$2
 
   x_coin_payload=$(curl -s https://rest.coinapi.io/v1/exchanges \
-  -X GET \
-  -H "X-CoinAPI-Key: $x_coin_api_key" | \
-  jq '.[] | "\(.name) \(.data_start)"' | \
-  grep "$date"
+    -X GET \
+    -H "X-CoinAPI-Key: $x_coin_api_key" | \
+    jq '.[] | "\(.name) \(.data_start)"' | \
+    grep "$date"
   >> /dev/null)
 
-  return $x_coin_payload
+  echo $x_coin_payload
 }
