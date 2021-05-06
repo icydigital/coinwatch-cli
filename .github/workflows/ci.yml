@@ -2,9 +2,6 @@ name: ci
 
 on: push
 
-env:
-  AWS_REGION: us-east-1
-
 jobs:
   test:
     runs-on: ubuntu-latest
