@@ -12,5 +12,5 @@ jobs:
       - name: test coinwatch
         run: |
           source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
-          source ./test_suite.sh
+          source ./coinwatch.sh ./test_suite.sh
           test_get_list_of_exchanges_by_date ${{ secrets.X_COIN_API_KEY }}

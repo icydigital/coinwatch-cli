@@ -2,9 +2,9 @@
 test_get_list_of_exchanges_by_date () {
   printf "test_get_list_of_exchanges_by_date\n"
   X_COIN_API_KEY=$1
-  PRELOAD=$(echo 2015)
+  PRELOAD=$(get_x_coin_data $X_COIN_API_KEY 2015)
 
-  PAYLOAD=$(./coinwatch.sh $X_COIN_API_KEY 2015)
+  PAYLOAD=$(get_x_coin_data $X_COIN_API_KEY 2015)
 
   echo "$PAYLOAD"
   echo "$PRELOAD"
