@@ -4,9 +4,10 @@ test_get_list_of_exchanges_by_date () {
   X_COIN_API_KEY=$1
   PRELOAD=$(echo 'BTCTRADE 2015-05-17')
 
-  PAYLOAD=$(./coinwatch.sh $X_COIN_API_KEY 2015-05-17)
+  PAYLOAD=$(./coinwatch.sh $X_COIN_API_KEY 2015)
 
   echo "$PAYLOAD"
+  cat "$PAYLOAD"
   echo "$PRELOAD"
   diff -u <(echo "$PAYLOAD") <(echo "$PRELOAD")
 
