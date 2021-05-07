@@ -12,3 +12,5 @@ get_x_coin_data() {
 
   echo $x_coin_payload
 }
+
+get_x_coin_data $1 $2
