@@ -1,5 +1,5 @@
 #!/bin/bash
-x_coin_api_key=$(echo $1 | base64 --decode)
+x_coin_api_key=$1
 date=$2
 
 x_coin_payload=$(curl -s https://rest.coinapi.io/v1/exchanges \
