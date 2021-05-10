@@ -19,7 +19,7 @@ test_get_list_of_exchanges_by_date() {
   printf "test_get_list_of_exchanges_by_date\n"
   resp_head="$(mktemp)"
   resp_body="$(mktemp)"
-  date=$(date)
+  date=$(date + '%Y/%d/%m/')
 
   X_COIN_API_KEY=$1
 
