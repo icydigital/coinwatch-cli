@@ -27,7 +27,8 @@ test_get_list_of_exchanges_by_date() {
     -X GET \
     --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
     -D $resp_head | \
-    jq '.[] | "\(.name) \(.data_start)"'
+    jq '.[] | "\(.name) \(.data_start)"' | \
+    grep "$date"
   >> $resp_body
 
   assert_status $resp_head 200
