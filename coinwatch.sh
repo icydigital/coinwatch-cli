@@ -4,7 +4,7 @@ date=$2
 
 x_coin_payload=$(curl -s https://rest.coinapi.io/v1/exchanges \
   -X GET \
-  -H "X-CoinAPI-Key: $x_coin_api_key" | \
+  --header "X-CoinAPI-Key: $x_coin_api_key" | \
   jq '.[]'
   # jq '.[] | "\(.name) \(.data_start)"' | \
   # grep "$date"
