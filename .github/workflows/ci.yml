@@ -14,5 +14,5 @@ jobs:
           source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
           source ./test_suite.sh
           test_get_exchanges_200 ${{ secrets.X_COIN_API_KEY }}
-          test_coinwatch_get_list_of_exchanges_by_date ${{ secrets.X_COIN_API_KEY }} 2017-09-17
+          test_coinwatch_get_list_of_exchanges_by_date_200 ${{ secrets.X_COIN_API_KEY }} 2017-09-17
           test_coinwatch_sh ${{ secrets.X_COIN_API_KEY }} 2017-09-17

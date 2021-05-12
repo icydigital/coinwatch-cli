@@ -15,8 +15,8 @@ test_get_exchanges_200() {
 }
 
 
-test_coinwatch_get_list_of_exchanges_by_date() {
-  printf "test_get_list_of_exchanges_by_date\n"
+test_coinwatch_get_list_of_exchanges_by_date_200() {
+  printf "test_get_list_of_exchanges_by_date_200\n"
 
   resp_head="$(mktemp)"
   resp_body="$(mktemp)"
@@ -52,7 +52,7 @@ test_coinwatch_sh() {
 
   if grep -xq "$expexted_string" "$resp_body";
   then
-    printf "response does match expected string"
+    printf "response does match expected string\n"
   else
     exit 1
   fi
@@ -63,6 +63,6 @@ test_coinwatch_sh() {
   then
     exit 1
   else
-    printf "dummy response does not match expected string"
+    printf "dummy response does not match expected string\n"
   fi
 }
