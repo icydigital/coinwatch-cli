@@ -1,7 +1,8 @@
 #!/bin/bash
+x_coin_api_key=$1
+date=$2
+
 coinwatch () {
-  x_coin_api_key=$1
-  date=$2
   resp_head="$(mktemp)"
   resp_body="$(mktemp)"
 

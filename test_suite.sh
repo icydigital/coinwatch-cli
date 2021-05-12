@@ -44,7 +44,7 @@ test_coinwatch_sh() {
   X_COIN_API_KEY=$1
   date=$2
 
-  resp_body=$(coinwatch $X_COIN_API_KEY $date)
+  resp_body=$(./coinwatch.sh $X_COIN_API_KEY $date)
   expexted_string="Token Store 2017-09-17"
 
   if grep -xq "$expexted_string" "$resp_body"; then
