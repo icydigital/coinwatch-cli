@@ -15,7 +15,7 @@ test_get_exchanges_200() {
   assert_status $resp_head 200
 }
 
-test_get_list_of_exchanges_by_date() {
+test_coinwatch_get_list_of_exchanges_by_date() {
   printf "test_get_list_of_exchanges_by_date\n"
   resp_head="$(mktemp)"
   resp_body="$(mktemp)"
@@ -31,5 +31,9 @@ test_get_list_of_exchanges_by_date() {
     grep "$date"
   >> $resp_body
 
+  resp_string=$(cat $resp_body)
+  expexted_string='"Token Store 2017-09-17"'
+
   assert_status $resp_head 200
+  assert_equal $expexted_string $resp_string
 }
