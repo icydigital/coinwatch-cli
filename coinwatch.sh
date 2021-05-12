@@ -1,15 +1,17 @@
 #!/bin/bash
-x_coin_api_key=$1
-date=$2
-resp_head="$(mktemp)"
-resp_body="$(mktemp)"
+coinwatch () {
+  x_coin_api_key=$1
+  date=$2
+  resp_head="$(mktemp)"
+  resp_body="$(mktemp)"
 
-curl -sS https://rest.coinapi.io/v1/exchanges \
-  -X GET \
-  --header "X-CoinAPI-Key: $x_coin_api_key" \
-  -D $resp_head |
-  jq -r '.[] | "\(.name) \(.data_start)"' | \
-  grep "$date" \
->> $resp_body
+  curl -sS https://rest.coinapi.io/v1/exchanges \
+    -X GET \
+    --header "X-CoinAPI-Key: $x_coin_api_key" \
+    -D $resp_head |
+    jq -r '.[] | "\(.name) \(.data_start)"' | \
+    grep "$date"
+  >> $resp_body
+}
 
-cat $resp_body
+coinwatch $1 $2
