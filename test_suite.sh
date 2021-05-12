@@ -33,6 +33,6 @@ test_coinwatch_get_list_of_exchanges_by_date() {
 
   assert_status $resp_head 200
   if grep -xq "$expexted_string" "$resp_body"; then
-    printf "$resp_body"
+    cat "$resp_body"
   fi
 }
