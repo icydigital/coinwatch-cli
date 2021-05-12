@@ -57,12 +57,12 @@ test_coinwatch_sh() {
     exit 1
   fi
 
-  cat "dummy" >> $dummy_resp_body
+  echo "dummy" >> $dummy_resp_body
 
   if grep -xq "$expexted_string" "$dummy_resp_body";
   then
-    printf "dummy response does match expected string"
-  else
     exit 1
+  else
+    printf "dummy response does not match expected string"
   fi
 }
