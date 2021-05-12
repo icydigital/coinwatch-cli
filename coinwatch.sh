@@ -9,5 +9,5 @@ curl -sS https://rest.coinapi.io/v1/exchanges \
   --header "X-CoinAPI-Key: $x_coin_api_key" \
   -D $resp_head |
   jq '.[] | "\(.name) \(.data_start)"' | \
-  grep "$date"
+  grep "$date" \
 >> $resp_body

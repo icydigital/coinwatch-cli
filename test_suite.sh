@@ -8,7 +8,7 @@ test_get_exchanges_200() {
   curl -sS https://rest.coinapi.io/v1/exchanges \
     -X GET \
     --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
-    -D $resp_head
+    -D $resp_head \
   >> /dev/null
 
   assert_status $resp_head 200
@@ -27,7 +27,7 @@ test_coinwatch_get_list_of_exchanges_by_date() {
     --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
     -D $resp_head | \
     jq '.[] | "\(.name) \(.data_start)"' | \
-    grep "$date"
+    grep "$date" \
   >> $resp_body
 
   resp_string=$(cat $resp_body)
