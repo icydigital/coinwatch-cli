@@ -2,7 +2,6 @@
 test_get_exchanges_200() {
   printf "test_get_exchanges_200\n"
   resp_head="$(mktemp)"
-  resp_body="$(mktemp)"
 
   X_COIN_API_KEY=$1
 
@@ -10,7 +9,7 @@ test_get_exchanges_200() {
     -X GET \
     --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
     -D $resp_head
-  >> $resp_body
+  >> /dev/null
 
   assert_status $resp_head 200
 }
@@ -32,7 +31,7 @@ test_coinwatch_get_list_of_exchanges_by_date() {
   >> $resp_body
 
   resp_string=$(cat $resp_body)
-  expexted_string='"Token Store 2017-09-17"'
+  expexted_string="Token Store 2017-09-17"
 
   assert_status $resp_head 200
   assert_equal $expexted_string $resp_string
