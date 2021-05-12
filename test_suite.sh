@@ -43,6 +43,7 @@ test_coinwatch_sh() {
   printf "test_coinwatch_sh\n"
 
   resp_body="$(mktemp)"
+  dummy_resp_body="$(mktemp)"
   X_COIN_API_KEY=$1
   date=$2
 
@@ -52,6 +53,15 @@ test_coinwatch_sh() {
   if grep -xq "$expexted_string" "$resp_body";
   then
     printf "response does match expected string"
+  else
+    exit 1
+  fi
+
+  cat "dummy" >> $dummy_resp_body
+
+  if grep -xq "$expexted_string" "$dummy_resp_body";
+  then
+    printf "dummy response does match expected string"
   else
     exit 1
   fi
