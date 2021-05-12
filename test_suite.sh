@@ -25,13 +25,14 @@ test_coinwatch_get_list_of_exchanges_by_date() {
     -X GET \
     --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
     -D $resp_head | \
-    jq '.[] | "\(.name) \(.data_start)"' | \
+    jq -r '.[] | "\(.name) \(.data_start)"' | \
     grep "$date" \
   >> $resp_body
 
-  resp_string=$(cat $resp_body)
   expexted_string="Token Store 2017-09-17"
 
   assert_status $resp_head 200
-  assert_equal $expexted_string $resp_string
+  if grep -xq "$expexted_string" "$resp_body"; then
+    printf "$resp_body"
+  fi
 }
