@@ -18,9 +18,8 @@ test_coinwatch_get_list_of_exchanges_by_date() {
   printf "test_get_list_of_exchanges_by_date\n"
   resp_head="$(mktemp)"
   resp_body="$(mktemp)"
-  date=$(date + '%Y/%d/%m/')
-
   X_COIN_API_KEY=$1
+  date=$2
 
   curl -sS https://rest.coinapi.io/v1/exchanges \
     -X GET \
