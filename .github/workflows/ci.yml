@@ -9,6 +9,10 @@ jobs:
       - name: clone the repo
         uses: actions/checkout@v2.3.4
 
+      - name: install notification dep
+        run: |
+          sudo apt-get install notify-osd
+
       - name: test coinwatch
         run: |
           source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
