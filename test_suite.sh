@@ -3,7 +3,6 @@ test_get_exchanges_200() {
   printf "test_get_exchanges_200\n"
 
   resp_head="$(mktemp)"
-  X_COIN_API_KEY=$1
 
   curl -sS https://rest.coinapi.io/v1/exchanges \
     -X GET \
@@ -20,8 +19,7 @@ test_coinwatch_get_list_of_exchanges_by_date_200() {
 
   resp_head="$(mktemp)"
   resp_body="$(mktemp)"
-  X_COIN_API_KEY=$1
-  date=$2
+  date=$1
 
   curl -sS https://rest.coinapi.io/v1/exchanges \
     -X GET \
@@ -44,8 +42,7 @@ test_coinwatch_sh() {
 
   resp_body="$(mktemp)"
   dummy_resp_body="$(mktemp)"
-  X_COIN_API_KEY=$1
-  date=$2
+  date=$1
 
   ./coinwatch.sh $X_COIN_API_KEY $date >> $resp_body
   expexted_string="Token Store 2017-09-17"
@@ -71,6 +68,6 @@ test_coinwatch_notification() {
   printf "test_coinwatch_notification\n"
 
   resp_body="$(mktemp)"
-  
-  ./coinwatch.sh $X_COIN_API_KEY $date "true" >> $resp_body
+
+  ./coinwatch.sh $X_COIN_API_KEY $date $2 >> $resp_body
 }
