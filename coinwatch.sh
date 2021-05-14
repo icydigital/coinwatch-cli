@@ -22,5 +22,5 @@ then
   coinwatch $1 $2
 else
   coinwatch $1 $2 >> $message
-  zenity --notification --text="$(cat "$message")"
+  notify-send "New coins on: $date" "$(cat "$message")"
 fi
