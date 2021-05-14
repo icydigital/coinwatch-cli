@@ -1,6 +1,8 @@
 #!/bin/bash
 x_coin_api_key=$1
 date=$2
+notifier=$3
+message="$(mktemp)"
 
 coinwatch () {
   resp_head="$(mktemp)"
@@ -15,4 +17,10 @@ coinwatch () {
   >> $resp_body
 }
 
-coinwatch $1 $2
+if [ -z "$notifier" ]
+then
+  coinwatch $1 $2
+else
+  coinwatch $1 $2 >> $message
+  zenity --notification --text="$(cat "$message")"
+fi

@@ -66,3 +66,11 @@ test_coinwatch_sh() {
     printf "dummy response does not match expected string\n"
   fi
 }
+
+test_coinwatch_notification() {
+  printf "test_coinwatch_notification\n"
+
+  resp_body="$(mktemp)"
+  
+  ./coinwatch.sh $X_COIN_API_KEY $date "true" >> $resp_body
+}
