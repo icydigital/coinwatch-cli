@@ -1,5 +1,4 @@
 #!/bin/bash
-# source .env
 
 date=$1
 notifier=$2
@@ -39,8 +38,8 @@ coinwatch () {
 
 if [ -z "$notifier" ]
 then
-  coinwatch $1
+  coinwatch $date
 else
-  coinwatch $1 $2 >> $message
+  coinwatch $date >> $message
   notify-send "New coins on: $date" "$(cat "$message")"
 fi
