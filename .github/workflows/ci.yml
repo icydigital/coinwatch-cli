@@ -16,6 +16,7 @@ jobs:
       - name: test coinwatch
         env:
           X_COIN_API_KEY: ${{ secrets.X_COIN_API_KEY }}
+          NOMICS_API_KEY: ${{ secrets.NOMICS_API_KEY }}
         run: |
           source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
           source ./test_suite.sh
