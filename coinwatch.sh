@@ -1,5 +1,5 @@
 #!/bin/bash
-source .env
+# source .env
 
 date=$1
 notifier=$2
