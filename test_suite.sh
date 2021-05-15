@@ -13,7 +13,6 @@ test_get_exchanges_200() {
   assert_status $resp_head 200
 }
 
-
 test_coinwatch_get_list_of_exchanges_by_date_200() {
   printf "test_get_list_of_exchanges_by_date_200\n"
 
@@ -44,7 +43,7 @@ test_coinwatch_sh() {
   dummy_resp_body="$(mktemp)"
   date=$1
 
-  ./coinwatch.sh $X_COIN_API_KEY $date >> $resp_body
+  ./coinwatch.sh $date >> $resp_body
   expexted_string="Token Store 2017-09-17"
 
   if grep -xq "$expexted_string" "$resp_body";
@@ -64,10 +63,10 @@ test_coinwatch_sh() {
   fi
 }
 
-test_coinwatch_notification() {
+test_coinwatch_sh_notification() {
   printf "test_coinwatch_notification\n"
 
   resp_body="$(mktemp)"
 
-  ./coinwatch.sh $X_COIN_API_KEY $date $2 >> $resp_body
+  ./coinwatch.sh $date $2 >> $resp_body
 }

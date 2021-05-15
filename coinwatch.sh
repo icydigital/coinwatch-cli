@@ -1,7 +1,6 @@
 #!/bin/bash
-x_coin_api_key=$1
-date=$2
-notifier=$3
+date=$1
+notifier=$2
 message="$(mktemp)"
 
 coinwatch () {
@@ -10,7 +9,7 @@ coinwatch () {
 
   curl -sS https://rest.coinapi.io/v1/exchanges \
     -X GET \
-    --header "X-CoinAPI-Key: $x_coin_api_key" \
+    --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
     -D $resp_head |
     jq -r '.[] | "\(.name) \(.data_start)"' | \
     grep "$date"
@@ -19,7 +18,7 @@ coinwatch () {
 
 if [ -z "$notifier" ]
 then
-  coinwatch $1 $2
+  coinwatch $1
 else
   coinwatch $1 $2 >> $message
   notify-send "New coins on: $date" "$(cat "$message")"
