@@ -59,6 +59,8 @@ test_coinwatch_sh() {
   ./coinwatch.sh $date >> $resp_body
   expexted_string="Token Store 2017-09-17"
 
+  cat $resp_body
+
   if grep -xq "$expexted_string" "$resp_body";
   then
     printf "response does match expected string\n"
