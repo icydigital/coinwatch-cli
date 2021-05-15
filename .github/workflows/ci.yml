@@ -19,7 +19,8 @@ jobs:
         run: |
           source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
           source ./test_suite.sh
-          test_get_exchanges_200
+          test_get_exchanges_coinmarketcap_200
+          test_get_exchanges_nomics_200
           test_coinwatch_get_list_of_exchanges_by_date_200 2017-09-17
           test_coinwatch_sh 2017-09-17
           test_coinwatch_sh_notification 2017-09-17 true
