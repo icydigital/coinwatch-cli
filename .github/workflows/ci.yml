@@ -22,4 +22,4 @@ jobs:
           test_get_exchanges_200
           test_coinwatch_get_list_of_exchanges_by_date_200 2017-09-17
           test_coinwatch_sh 2017-09-17
-          test_coinwatch_notification 2017-09-17 true
+          test_coinwatch_sh_notification 2017-09-17 true
