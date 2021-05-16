@@ -11,7 +11,7 @@ watch_coinmarketcap () {
   curl -sS https://rest.coinapi.io/v1/exchanges \
     -X GET \
     --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
-    -D $resp_head |
+    -D $resp_head | \
     jq -r '.[] | "\(.name) \(.data_start)"' | \
     grep "$1" \
   >> $resp_body
