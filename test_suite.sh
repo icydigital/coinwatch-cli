@@ -63,9 +63,8 @@ test_coinwatch_get_list_of_exchanges_by_date_nomics_200() {
   expexted_string="Token Store 2017-09-17"
 
   assert_status $resp_head 200
-  if grep -xq "$expexted_string" "$resp_body"; then
-    cat "$resp_body"
-  fi
+  cat "$resp_body"
+
 }
 
 test_coinwatch_sh() {
