@@ -1,9 +1,4 @@
 #!/bin/bash
-
-date=$1
-notifier=$2
-message="$(mktemp)"
-
 watch_cmc () {
   resp_head_cmc="$(mktemp)"
   resp_body_cmc="$(mktemp)"
@@ -11,9 +6,9 @@ watch_cmc () {
   curl -sS "https://rest.coinapi.io/v1/exchanges" \
     -X GET \
     --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
-    -D $resp_head_cmc \
-    # jq -r '.[] | "\(.name) \(.data_start)"' | \
-    # grep "$1" \
+    -D $resp_head_cmc | \
+    jq -r '.[] | "\(.name) \(.data_start)"' | \
+    grep "$1" \
   >> $resp_body_cmc
 }
 
@@ -27,13 +22,20 @@ watch_nomics () {
 }
 
 get_coins () {
-  watch_cmc
-  cat "$resp_body_cmc"
+  resp_body="$(mktemp)"
+  watch_cmc $1
+  # watch_nomics
+  cat "$resp_body_cmc" >> $resp_body
 }
 
 coinwatch () {
-  get_coins
+  get_coins $1
+  cat "$resp_body"
 }
+
+date=$1
+notifier=$2
+message="$(mktemp)"
 
 if [ -z "$notifier" ]
 then

@@ -68,7 +68,7 @@ test_coinwatch_sh() {
   #   exit 1
   # fi
   #
-  # echo "dummy" >> $dummy_resp_body$resp_body_cmc
+  # echo "dummy" >> $dummy_resp_body
   #
   # if grep -xq "$expexted_string" "$dummy_resp_body";
   # then
