@@ -26,8 +26,8 @@ test_get_exchanges_nomics_200() {
   assert_status $resp_head 200
 }
 
-test_coinwatch_get_list_of_exchanges_by_date_200() {
-  printf "test_get_list_of_exchanges_by_date_200\n"
+test_coinwatch_get_list_of_exchanges_by_date_cmc_200() {
+  printf "test_coinwatch_get_list_of_exchanges_by_date_cmc_200\n"
 
   resp_head="$(mktemp)"
   resp_body="$(mktemp)"
