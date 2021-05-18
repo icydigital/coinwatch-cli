@@ -68,7 +68,7 @@ test_coinwatch_sh() {
   #   exit 1
   # fi
   #
-  # echo "dummy" >> $dummy_resp_body
+  # echo "dummy" >> $dummy_resp_body$resp_body_cmc
   #
   # if grep -xq "$expexted_string" "$dummy_resp_body";
   # then
@@ -83,5 +83,5 @@ test_coinwatch_sh_notification() {
 
   resp_body="$(mktemp)"
 
-  ./coinwatch.sh $date $2 >> $resp_body
+  ./coinwatch.sh
 }
