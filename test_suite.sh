@@ -61,27 +61,37 @@ test_coinwatch_sh() {
 
   cat $resp_body
 
-  # if grep -xq "$expexted_string" "$resp_body";
-  # then
-  #   printf "response does match expected string\n"
-  # else
-  #   exit 1
-  # fi
-  #
-  # echo "dummy" >> $dummy_resp_body
-  #
-  # if grep -xq "$expexted_string" "$dummy_resp_body";
-  # then
-  #   exit 1
-  # else
-  #   printf "dummy response does not match expected string\n"
-  # fi
+  if grep -xq "$expexted_string" "$resp_body";
+  then
+    printf "response does match expected string\n"
+  else
+    exit 1
+  fi
+
+  echo "dummy" >> $dummy_resp_body
+
+  if grep -xq "$expexted_string" "$dummy_resp_body";
+  then
+    exit 1
+  else
+    printf "dummy response does not match expected string\n"
+  fi
 }
 
 test_coinwatch_sh_notification() {
   printf "test_coinwatch_notification\n"
+  date=$1
+  notifier=$2
 
-  resp_body="$(mktemp)"
+  ./coinwatch.sh $date $notifier >> $resp_body
+  expexted_string="Token Store 2017-09-17"
 
-  ./coinwatch.sh
+  cat $resp_body
+
+  if grep -xq "$expexted_string" "$resp_body";
+  then
+    printf "response does match expected string\n"
+  else
+    exit 1
+  fi
 }
