@@ -28,7 +28,7 @@ watch_nomics () {
 
 get_coins () {
   watch_cmc
-  cat $resp_body_cmc
+  cat "$resp_body_cmc"
 }
 
 coinwatch () {
