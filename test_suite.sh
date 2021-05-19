@@ -20,7 +20,7 @@ test_get_exchanges_nomics_200() {
   resp_body="$(mktemp)"
 
   curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
-    -D $resp_head \
+    -D $resp_head
   >> $resp_body
 
   assert_status $resp_head 200
@@ -57,7 +57,9 @@ test_coinwatch_get_list_of_exchanges_by_date_nomics_200() {
   date=$1
 
   curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
-    -D $resp_head \
+    -D $resp_head | \
+    jq -r '.[] | "\(.currency) \(.first_trade)"' | \
+    grep "$date" \
   >> $resp_body
 
   expexted_string="Token Store 2017-09-17"

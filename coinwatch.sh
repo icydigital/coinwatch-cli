@@ -17,7 +17,9 @@ watch_nomics () {
   resp_body_nomics="$(mktemp)"
 
   curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
-    -D $resp_head_nomics \
+    -D $resp_head_nomics | \
+    jq -r '.[] | "\(.currency) \(.first_trade)"' | \
+    grep "$1" \
   >> $resp_body_nomics
 }
 
