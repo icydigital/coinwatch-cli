@@ -20,8 +20,9 @@ watch_nomics () {
 
   curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
     -D $resp_head_nomics | \
-    jq -r '.[] | select(.first_trade != null) | .name + " " + .first_trade | rev | cut -c11- | rev' | \
-    grep "$1" \
+    jq -r '.[] | select(.first_trade != null) | .name + " " + .first_trade ' | \
+    grep "$1" | \
+    rev | cut -c11- | rev \
   >> $resp_body_nomics
 }
 
