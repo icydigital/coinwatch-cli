@@ -22,5 +22,5 @@ jobs:
           source ./test_suite.sh
           test_get_exchanges_coinmarketcap_200
           test_get_exchanges_nomics_200
-          test_coinwatch_sh 2017-09-17
-          test_coinwatch_sh_notification 2017-09-17 true
+          test_coinwatch_sh 2017-09
+          test_coinwatch_sh_notification 2017-09 true

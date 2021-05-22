@@ -20,14 +20,15 @@ watch_nomics () {
 
   curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
     -D $resp_head_nomics | \
-    jq -r '.[] | select(.first_trade != null) | .name + " " + .first_trade' \
+    jq -r '.[] | select(.first_trade != null) | .name + " " + .first_trade' | \
+    grep "$1" \
   >> $resp_body_nomics
 }
 
 get_coins () {
   resp_body="$(mktemp)"
   watch_cmc $1
-  watch_nomics
+  watch_nomics $1
   cat "$resp_body_cmc" "$resp_body_nomics" >> $resp_body
 }
 
