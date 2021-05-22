@@ -57,7 +57,8 @@ test_coinwatch_get_list_of_exchanges_by_date_nomics_200() {
   date=$1
 
   curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
-    -D $resp_head \
+    -D $resp_head | \
+    jq '.'
   >> $resp_body
 
   assert_status $resp_head 200

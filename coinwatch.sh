@@ -1,4 +1,6 @@
 #!/bin/bash
+#source ./.env
+
 watch_cmc () {
   resp_head_cmc="$(mktemp)"
   resp_body_cmc="$(mktemp)"
@@ -18,7 +20,7 @@ watch_nomics () {
 
   curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
     -D $resp_head_nomics | \
-    jq -r '.[] | "\(.currency) \(.first_trade)"' | \
+    jq -r '.[] | "\(.name) \(.first_trade)"' | \
     grep "$1" \
   >> $resp_body_nomics
 }
