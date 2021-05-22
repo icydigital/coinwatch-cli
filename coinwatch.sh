@@ -9,7 +9,7 @@ watch_cmc () {
     -X GET \
     --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
     -D $resp_head_cmc | \
-    jq -r '.[] | "\(.name) \(.data_start)"' | \
+    jq -r '.[] | .name + " " + .data_start' | \
     grep "$1" \
   >> $resp_body_cmc
 }
