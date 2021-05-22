@@ -1,5 +1,5 @@
 #!/bin/bash
-#source ./.env
+# source ./.env
 
 watch_cmc () {
   resp_head_cmc="$(mktemp)"
