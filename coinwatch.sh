@@ -32,7 +32,7 @@ watch_massari () {
 
   curl -sS "https://data.messari.io/api/v2/assets" \
     -D $resp_head_massari | \
-    jq -r '.data | .[].name " " + .[].profile.economics.launch.initial_distribution.token_distribution_date' | \
+    jq -r '.data | .[].name + " " + .[].profile.economics.launch.initial_distribution.token_distribution_date' | \
     grep "$1" | \
     rev | cut -c11- | rev \
   >> $resp_body_massari
