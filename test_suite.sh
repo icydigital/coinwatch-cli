@@ -1,6 +1,6 @@
 #!/bin/bash
-test_get_exchanges_coinmarketcap_200() {
-  printf "test_get_exchanges_coinmarketcap_200\n"
+test_get_exchanges_coinapi_200() {
+  printf "test_get_exchanges_coinapi_200\n"
 
   resp_head="$(mktemp)"
 
@@ -17,11 +17,22 @@ test_get_exchanges_nomics_200() {
   printf "test_get_exchanges_nomics_200\n"
 
   resp_head="$(mktemp)"
-  resp_body="$(mktemp)"
 
   curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
     -D $resp_head \
-  >> $resp_body
+  >> /dev/null
+
+  assert_status $resp_head 200
+}
+
+test_get_exchanges_messari_200() {
+  printf "test_get_exchanges_messari_200\n"
+
+  resp_head="$(mktemp)"
+
+  curl -sS "https://data.messari.io/api/v2/assets" \
+    -D $resp_head \
+  >> /dev/null
 
   assert_status $resp_head 200
 }

@@ -4,6 +4,7 @@
 
 <!--
 APIs:
-- CoinMarketCap
+- Coinapi
 - Nomics
+- Messari
  -->

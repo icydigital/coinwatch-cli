@@ -26,11 +26,24 @@ watch_nomics () {
   >> $resp_body_nomics
 }
 
+watch_massari () {
+  resp_head_massari="$(mktemp)"
+  resp_body_massari="$(mktemp)"
+
+  curl -sS "https://data.messari.io/api/v2/assets" \
+    -D $resp_head_massari \
+    jq -r '.data | .[].name " " + .[].profile.economics.launch.initial_distribution.token_distribution_date' \
+    grep "$1" | \
+    rev | cut -c11- | rev \
+  >> $resp_body_massari
+}
+
 get_coins () {
   resp_body="$(mktemp)"
   watch_cmc $1
   watch_nomics $1
-  cat "$resp_body_cmc" "$resp_body_nomics" >> $resp_body
+  watch_massari $1
+  cat "$resp_body_cmc" "$resp_body_nomics" "$resp_body_massari" >> $resp_body
 }
 
 coinwatch () {
