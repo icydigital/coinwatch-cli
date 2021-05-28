@@ -19,6 +19,7 @@ watch_nomics () {
   resp_body_nomics="$(mktemp)"
 
   curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
+    -X GET \
     -D $resp_head_nomics | \
     jq -r '.[] | select(.first_trade != null) | .name + " " + .first_trade' | \
     grep "$1" | \
@@ -31,6 +32,7 @@ watch_massari () {
   resp_body_massari="$(mktemp)"
 
   curl -sS "https://data.messari.io/api/v2/assets" \
+    -X GET \
     -D $resp_head_massari | \
     jq -r '.data | .[].name + " " + .[].profile.economics.launch.initial_distribution.token_distribution_date' | \
     grep "$1" | \
@@ -43,7 +45,7 @@ get_coins () {
   watch_cmc $1
   watch_nomics $1
   watch_massari $1
-  cat "$resp_body_cmc" "$resp_body_nomics" "$resp_body_massari" >> $resp_body
+  cat "$resp_body_cmc" "$resp_body_nomics" "$resp_body_massari" | sort >> $resp_body
 }
 
 coinwatch () {
