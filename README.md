@@ -2,6 +2,17 @@
 
 # coinwatch
 
+alert for new crypto coins
+add shell script as a cronjob  
+
+### cronjob
+
+adds daily cronjob
+```
+crontab -e
+0 0,8,16 * * * ~/coinwatch/coinwatch.sh $(date +"%Y-%m-%d") true
+```
+
 <!--
 APIs:
 - Coinapi
