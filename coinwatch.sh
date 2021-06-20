@@ -1,5 +1,5 @@
 #!/bin/bash
-test -f ./.env && source ./.env
+# test -f ./.env && source ./.env
 X_COIN_API_KEY="D9CEE857-9F32-42BD-A01B-0774DFD65EB3"
 NOMICS_API_KEY="e1cb22a6e8b5b4fbe699353f2398d1ce66c9bfe2"
 
