@@ -2,19 +2,17 @@
 
 # coinwatch
 
-shell script which observes newly introduced crypto coins by date  
-
 ```
-~/coinwatch/coinwatch.sh $(date +"%Y-%m-%d")
+curl -s https://raw.githubusercontent.com/icydigital/coinwatch/main/coinwatch.sh | bash -s $(date +"%Y-%m-%d") true
 ```
 
 ### cronjob
 
-adds daily cronjob with notification
+add daily cron job
 
 ```
 crontab -e
-0 0,8,16 * * * ~/coinwatch/coinwatch.sh $(date +"%Y-%m-%d") true
+0 0,8,16 * * * curl -s https://raw.githubusercontent.com/icydigital/coinwatch/main/coinwatch.sh | bash -s $(date +"%Y-%m-%d") true
 ```
 
 <!--
