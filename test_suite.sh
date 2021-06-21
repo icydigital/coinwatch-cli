@@ -44,7 +44,8 @@ test_coinwatch_sh() {
   dummy_resp_body="$(mktemp)"
   date=$1
 
-  ./coinwatch.sh $date >> $resp_body
+  curl -s https://raw.githubusercontent.com/icydigital/coinwatch/main/coinwatch.sh \
+  | bash -s $date >> $resp_body
 
   cat $resp_body
 }
@@ -54,7 +55,8 @@ test_coinwatch_sh_notification() {
   date=$1
   notifier=$2
 
-  ./coinwatch.sh $date $notifier >> $resp_body
+  curl -s https://raw.githubusercontent.com/icydigital/coinwatch/main/coinwatch.sh \
+  | bash -s $date $notification >> $resp_body
 
   cat $resp_body
 }
