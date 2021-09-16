@@ -1,4 +1,4 @@
-[![ci](https://github.com/icydigital/coinwatch/workflows/ci/badge.svg)[release](https://github.com/icydigital/coinwatch/workflows/release/badge.svg)](https://github.com/icydigital/coinwatch/actions)
+[![ci](https://github.com/icydigital/coinwatch/workflows/ci/badge.svg)] [![release](https://github.com/icydigital/coinwatch/workflows/release/badge.svg)](https://github.com/icydigital/coinwatch/actions)
 
 # coinwatch
 
