@@ -1,6 +1,11 @@
 name: ci
 
-on: push
+on:
+  push:
+    paths:
+    - ".github/workflows/ci.yml"
+    - "coinwatch.sh"
+    - "test_suite.sh"
 
 jobs:
   test:
