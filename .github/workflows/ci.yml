@@ -8,7 +8,7 @@ on:
     - "test_suite.sh"
 
 jobs:
-  test:
+  test-sh:
     runs-on: ubuntu-latest
     steps:
       - name: clone the repo
@@ -30,3 +30,14 @@ jobs:
           test_get_exchanges_messari_200
           test_coinwatch_sh 2020-09-16
           test_coinwatch_sh_notification 2020-09-16 true
+
+  test-release:
+    runs-on: ubuntu-latest
+    needs: test-sh
+    steps:
+      - name: clone the repo
+        uses: actions/checkout@v2.3.4
+
+      - name: download release
+        run: |
+          gh release download v0.1
