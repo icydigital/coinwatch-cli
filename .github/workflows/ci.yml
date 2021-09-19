@@ -46,8 +46,8 @@ jobs:
 
       - name: test release without notification
         run: |
-          ./coinwatch -s $(date +"%Y-%m-%d")
+          ${{ steps.timeseries.outputs.release }} -s $(date +"%Y-%m-%d")
 
       - name: test release with notification
         run: |
-          ./coinwatch -s $(date +"%Y-%m-%d") true
+          ${{ steps.timeseries.outputs.release }} -s $(date +"%Y-%m-%d") true
