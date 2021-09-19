@@ -43,3 +43,11 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: icydigital/coinwatch
+
+      - name: test release without notification
+        run: |
+          ./coinwatch -s $(date +"%Y-%m-%d")
+
+      - name: test release with notification
+        run: |
+          ./coinwatch -s $(date +"%Y-%m-%d") true
