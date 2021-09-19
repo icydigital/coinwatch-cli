@@ -46,8 +46,8 @@ jobs:
 
       - name: test release without notification
         run: |
-          ${{ steps.timeseries.outputs.release }} -s $(date +"%Y-%m-%d")
+          ${{ steps.downloadrelease.outputs.release }} $(date +"%Y-%m-%d")
 
       - name: test release with notification
         run: |
-          ${{ steps.timeseries.outputs.release }} -s $(date +"%Y-%m-%d") true
+          ${{ steps.downloadrelease.outputs.release }} $(date +"%Y-%m-%d") true
