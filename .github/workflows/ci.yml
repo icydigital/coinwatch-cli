@@ -28,8 +28,8 @@ jobs:
           test_get_exchanges_coinapi_200
           test_get_exchanges_nomics_200
           test_get_exchanges_messari_200
-          test_coinwatch_sh 2020-09-16
-          test_coinwatch_sh_notification 2020-09-16 true
+          test_coinwatch_sh
+          test_coinwatch_sh_notification
 
   test-release:
     runs-on: ubuntu-latest
