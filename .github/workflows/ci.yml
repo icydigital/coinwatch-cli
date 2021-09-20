@@ -7,6 +7,9 @@ on:
     - "coinwatch.sh"
     - "test_suite.sh"
 
+env:
+  NAME_OF_PROGRAM: coinwatch
+
 jobs:
   test-sh:
     runs-on: ubuntu-latest
@@ -38,11 +41,16 @@ jobs:
       - name: clone the repo
         uses: actions/checkout@v2.3.4
 
-      - name: download release
-        id: downloadrelease
-        uses: pozetroninc/github-action-get-latest-release@master
+      - name: get latest version release tag
+        id: get_release_tag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
-          repository: icydigital/coinwatch
+          fallback: 0.1
+
+      - name: download prebuild artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.NAME_OF_PROGRAM }}-binary-${{ steps.get_release_tag.outputs.tag }}
 
       - name: test release without notification
         run: |

@@ -24,11 +24,11 @@ jobs:
           sudo apt-get install shc
           sudo apt install dos2unix
 
-      - name: get the current version release tag
+      - name: get the pushed version release tag
         id: get_release_tag
         run: |
           pushed_tag=${GITHUB_REF/refs\/tags\//}
-          echo "[DEBUG] _version_release_tag=$pushed_tag"
+          echo "[DEBUG] VERSION_RELEASE_TAG=$pushed_tag"
           echo "VERSION_RELEASE_TAG=$pushed_tag" >> $GITHUB_ENV
 
       - name: prebuild binary
@@ -40,11 +40,6 @@ jobs:
         with:
           name: ${{ env.NAME_OF_PROGRAM }}-binary-${{ env.VERSION_RELEASE_TAG }}
           path: ${{ env.NAME_OF_PROGRAM }}
-
-      - name: download prebuild artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.NAME_OF_PROGRAM }}-binary-${{ env.VERSION_RELEASE_TAG }}
 
       - name: upload prebuild artifact to github release
         uses: svenstaro/upload-release-action@v2
