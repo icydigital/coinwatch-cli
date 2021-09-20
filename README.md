@@ -3,7 +3,7 @@
 # coinwatch
 
 ```
-./coinwatch -s $(date +"%Y-%m-%d") true
+./coinwatch
 ```
 
 ### cronjob
@@ -12,7 +12,7 @@ add daily cron job
 
 ```
 crontab -e
-0 0,8,16 * * * ./coinwatch -s $(date +"%Y-%m-%d") true
+0 0,8,16 * * * ./coinwatch
 ```
 
 <!--
