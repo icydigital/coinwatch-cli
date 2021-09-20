@@ -18,7 +18,7 @@ jobs:
         run: |
           sudo apt-get install libnotify-bin
 
-      - name: test coinwatch
+      - name: test coinwatch sh
         env:
           X_COIN_API_KEY: ${{ secrets.X_COIN_API_KEY }}
           NOMICS_API_KEY: ${{ secrets.NOMICS_API_KEY }}
@@ -46,8 +46,8 @@ jobs:
 
       - name: test release without notification
         run: |
-          ${{ steps.downloadrelease.outputs.release }} $(date +"%Y-%m-%d")
+          ${{ steps.downloadrelease.outputs.release }}
 
       - name: test release with notification
         run: |
-          ${{ steps.downloadrelease.outputs.release }} $(date +"%Y-%m-%d") true
+          ${{ steps.downloadrelease.outputs.release }}
