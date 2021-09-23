@@ -54,10 +54,6 @@ jobs:
           file: ${{ env.NAME_OF_PROGRAM }}-${{ steps.get_release_tag.outputs.tag }}.zip
           token: ${{ secrets.G_TOKEN }}
 
-      # - name: test release without notification
-      #   run: |
-      #     ${{ steps.downloadrelease.outputs.release }}
-      #
-      # - name: test release with notification
-      #   run: |
-      #     ${{ steps.downloadrelease.outputs.release }}
+      - name: test release without notification
+        run: |
+          ls
