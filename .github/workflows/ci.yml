@@ -51,7 +51,7 @@ jobs:
         uses: dsaltares/fetch-gh-release-asset@master
         with:
           version: "tags/${{ steps.get_release_tag.outputs.tag }}"
-          file: ${{ env.NAME_OF_PROGRAM }}
+          file: ${{ env.NAME_OF_PROGRAM }}-${{ steps.get_release_tag.outputs.tag }}.zip
           token: ${{ secrets.G_TOKEN }}
 
       # - name: test release without notification

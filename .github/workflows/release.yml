@@ -46,6 +46,6 @@ jobs:
         with:
           repo_token: ${{ secrets.G_TOKEN }}
           file: ${{ env.NAME_OF_PROGRAM }}
-          asset_name: ${{ env.NAME_OF_PROGRAM }}-binary-${{ env.VERSION_RELEASE_TAG }}
+          asset_name: ${{ env.NAME_OF_PROGRAM }}-${{ env.VERSION_RELEASE_TAG }}
           tag: ${{ env.VERSION_RELEASE_TAG }}
           prerelease: true
