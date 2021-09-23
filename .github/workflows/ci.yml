@@ -45,7 +45,7 @@ jobs:
         id: get_release_tag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
-          fallback: 0.1
+          fallback: v0.1
 
       - name: download prebuild release asset
         uses: dsaltares/fetch-gh-release-asset@master
