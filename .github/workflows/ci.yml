@@ -57,3 +57,4 @@ jobs:
       - name: test release without notification
         run: |
           ls
+          unzip ${{ env.NAME_OF_PROGRAM }}-${{ steps.get_release_tag.outputs.tag }}.zip
