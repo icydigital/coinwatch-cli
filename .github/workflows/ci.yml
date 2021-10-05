@@ -61,5 +61,6 @@ jobs:
 
       - name: test release
         run: |
-          ls
+          ls -lh
+          type ./coinwatch && ls
           ./coinwatch
