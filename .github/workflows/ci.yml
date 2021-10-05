@@ -47,23 +47,19 @@ jobs:
         with:
           fallback: v0.1
 
-      # - name: create the environment
-      #   run: |
-      #     release_tag=${{ steps.get_release_tag.outputs.tag }}
-      #     repo_owner=${{ steps.github.repository_owner }}
-      #     repo=${{ steps.github.repository }}
-      #
-      #     echo "RELEASE_ASSET_FILENAME=${{ env.NAME_OF_PROGRAM }}-$release_tag.tar.gz" >> $GITHUB_ENV
-      #     echo "TARBALL_URL=https://api.github.com/repos/$repo_owner/$repo/tarball/$release_tag" >> $GITHUB_ENV
-      #     echo "ZIP_URL=$pushed_tag" >> $GITHUB_ENV
+      - name: create the environment
+        run: |
+          release_tag=${{ steps.get_release_tag.outputs.tag }}
 
-      - name: download prebuild release asset
-        uses: dsaltares/fetch-gh-release-asset@master
+          echo "ARTIFACT_NAME=${{ env.NAME_OF_PROGRAM }}-binary-$release_tag" >> $GITHUB_ENV
+
+      - name: download artifact
+        uses: dawidd6/action-download-artifact@v2.14.1
         with:
-          version: "tags/${{ steps.get_release_tag.outputs.tag }}"
-          file: ${{ env.RELEASE_ASSET_FILENAME }}
-          token: ${{ secrets.G_TOKEN }}
+          workflow: release.yml
+          name: {{ env.ARTIFACT_NAME }}
 
-      - name: list content to observe prebuild release asset
+      - name: test release without notification
         run: |
           ls
+          curl $TARBALL_URL
