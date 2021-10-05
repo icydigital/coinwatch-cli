@@ -47,14 +47,23 @@ jobs:
         with:
           fallback: v0.1
 
+      # - name: create the environment
+      #   run: |
+      #     release_tag=${{ steps.get_release_tag.outputs.tag }}
+      #     repo_owner=${{ steps.github.repository_owner }}
+      #     repo=${{ steps.github.repository }}
+      #
+      #     echo "RELEASE_ASSET_FILENAME=${{ env.NAME_OF_PROGRAM }}-$release_tag.tar.gz" >> $GITHUB_ENV
+      #     echo "TARBALL_URL=https://api.github.com/repos/$repo_owner/$repo/tarball/$release_tag" >> $GITHUB_ENV
+      #     echo "ZIP_URL=$pushed_tag" >> $GITHUB_ENV
+
       - name: download prebuild release asset
         uses: dsaltares/fetch-gh-release-asset@master
         with:
           version: "tags/${{ steps.get_release_tag.outputs.tag }}"
-          file: ${{ env.NAME_OF_PROGRAM }}-${{ steps.get_release_tag.outputs.tag }}.tar.gz
+          file: ${{ env.RELEASE_ASSET_FILENAME }}
           token: ${{ secrets.G_TOKEN }}
 
-      - name: test release without notification
+      - name: list content to observe prebuild release asset
         run: |
           ls
-          file ${{ env.NAME_OF_PROGRAM }}-${{ steps.get_release_tag.outputs.tag }}.tar.gz
