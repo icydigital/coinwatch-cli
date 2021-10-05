@@ -59,7 +59,7 @@ jobs:
           workflow: release.yml
           name: ${{ env.ARTIFACT_NAME }}
 
-      - name: test release without notification
+      - name: test release
         run: |
           ls
-          curl $TARBALL_URL
+          ./coinwatch
