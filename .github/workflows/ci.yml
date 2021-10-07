@@ -42,14 +42,15 @@ jobs:
         uses: actions/checkout@v2.3.4
 
       - name: get latest version release tag
-        id: get_release_tag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        id: getlatesttag
+        uses: "oprypin/find-latest-tag@v1"
         with:
-          fallback: v0.1
+          repository: icydigital/conwatch
+          releases-only: true
 
       - name: create the environment
         run: |
-          release_tag=${{ steps.get_release_tag.outputs.tag }}
+          release_tag=${{ steps.getlatesttag.outputs.tag }}
 
           echo "ARTIFACT_NAME=${{ env.NAME_OF_PROGRAM }}-binary-$release_tag" >> $GITHUB_ENV
 
