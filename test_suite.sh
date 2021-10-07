@@ -37,26 +37,12 @@ test_get_exchanges_messari_200() {
   assert_status $resp_head 200
 }
 
-test_coinwatch_sh() {
+test_coinwatch() {
   printf "test_coinwatch_sh\n"
-
   resp_body="$(mktemp)"
-  dummy_resp_body="$(mktemp)"
-  date=$1
 
   curl -s https://raw.githubusercontent.com/icydigital/coinwatch/main/coinwatch.sh \
-  | bash -s $date >> $resp_body
-
-  cat $resp_body
-}
-
-test_coinwatch_sh_notification() {
-  printf "test_coinwatch_notification\n"
-  date=$1
-  notifier=$2
-
-  curl -s https://raw.githubusercontent.com/icydigital/coinwatch/main/coinwatch.sh \
-  | bash -s $date $notification >> $resp_body
+  | bash -s >> $resp_body
 
   cat $resp_body
 }
