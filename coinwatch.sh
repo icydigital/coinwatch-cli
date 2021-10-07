@@ -59,4 +59,4 @@ coinwatch () {
 message="$(mktemp)"
 
 coinwatch >> $message
-notify-send "New coins on: $date" "$(cat "$message")"
+notify-send "New coins on: $date_today" "$(cat "$message")"
