@@ -45,7 +45,7 @@ jobs:
         id: getlatesttag
         uses: "oprypin/find-latest-tag@v1"
         with:
-          repository: icydigital/conwatch
+          repository: icydigital/${{ env.NAME_OF_PROGRAM }}
           releases-only: true
 
       - name: create the environment
