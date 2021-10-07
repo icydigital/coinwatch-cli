@@ -33,7 +33,7 @@ jobs:
           test_get_exchanges_messari_200
           test_coinwatch
 
-  test-release:
+  test-prelease:
     runs-on: ubuntu-latest
     needs: test-sh
     steps:
@@ -50,10 +50,10 @@ jobs:
       - name: create the environment
         run: |
           release_tag=${{ steps.getlatesttag.outputs.tag }}
-
+          echo "[DEBUG] VERSION_RELEASE_TAG=$release_tag"
           echo "ARTIFACT_NAME=${{ env.NAME_OF_PROGRAM }}-binary-$release_tag" >> $GITHUB_ENV
 
-      - name: download artifact
+      - name: get release download artifact
         uses: dawidd6/action-download-artifact@v2.14.1
         with:
           workflow: release.yml
