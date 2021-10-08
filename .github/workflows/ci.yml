@@ -32,6 +32,7 @@ jobs:
           test_get_exchanges_nomics_200
           test_get_exchanges_messari_200
           test_coinwatch
+          ./coinwatch.sh
 
   test-prelease:
     runs-on: ubuntu-latest
