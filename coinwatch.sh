@@ -56,7 +56,11 @@ coinwatch () {
   cat "$resp_body"
 }
 
+message_header="New coins on: $date_today"
 message="$(mktemp)"
 
 coinwatch >> $message
-notify-send "New coins on: $date_today" "$(cat "$message")"
+notify-send "$(echo $message_header)" "$(cat "$message")"
+
+echo $message_header
+cat $message
