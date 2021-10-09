@@ -32,7 +32,6 @@ jobs:
           test_get_exchanges_nomics_200
           test_get_exchanges_messari_200
           test_coinwatch
-          ./coinwatch.sh
 
       - name: test coinwatch shell script
         run: |

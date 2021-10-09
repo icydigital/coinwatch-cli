@@ -62,5 +62,4 @@ message="$(mktemp)"
 coinwatch >> $message
 # notify-send "$(echo $message_header)" "$(cat "$message")"
 
-echo $message_header
-cat $message
+echo $message_header && cat $message
