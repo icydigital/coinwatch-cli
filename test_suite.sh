@@ -41,7 +41,7 @@ test_coinwatch() {
   printf "test_coinwatch_sh\n"
   resp_body="$(mktemp)"
 
-  curl -s https://raw.githubusercontent.com/icydigital/coinwatch/main/coinwatch.sh \
+  curl -s https://raw.githubusercontent.com/icydigital/coinwatch-cli/main/coinwatch.sh \
   | bash -s >> $resp_body
 
   cat $resp_body
