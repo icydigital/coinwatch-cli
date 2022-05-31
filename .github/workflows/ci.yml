@@ -66,4 +66,4 @@ jobs:
       - name: test release
         run: |
           ls -lh
-          chmod 755 ./coinwatch && ./coinwatch
+          ./coinwatch

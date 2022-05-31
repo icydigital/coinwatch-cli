@@ -1,6 +1,6 @@
-[![ci](https://github.com/icydigital/coinwatch/workflows/ci/badge.svg)](https://github.com/icydigital/coinwatch/actions)[![release](https://github.com/icydigital/coinwatch/workflows/release/badge.svg)](https://github.com/icydigital/coinwatch/actions)
+[![ci](https://github.com/icydigital/coinwatch-cli/workflows/ci/badge.svg)](https://github.com/icydigital/coinwatch-cli/actions)[![release](https://github.com/icydigital/coinwatch-cli/workflows/release/badge.svg)](https://github.com/icydigital/coinwatch-cli/actions)
 
-# coinwatch
+# coinwatch-cli
 
 ```
 ./coinwatch
