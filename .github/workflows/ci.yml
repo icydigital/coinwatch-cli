@@ -48,7 +48,7 @@ jobs:
         id: getlatesttag
         uses: "oprypin/find-latest-tag@v1"
         with:
-          repository: icydigital/${{ env.NAME_OF_PROGRAM }}
+          repository: icydigital/${{ env.NAME_OF_PROGRAM }}-cli
           releases-only: true
 
       - name: create the environment
