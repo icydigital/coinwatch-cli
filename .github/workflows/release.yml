@@ -37,7 +37,8 @@ jobs:
 
       - name: set execute permissions on prebuild binary
         run: |
-          chmod +x ./coinwatch
+          chmod +x ${{ env.NAME_OF_PROGRAM }}
+          ls -lh
 
       - name: storing prebuild as artifact
         uses: actions/upload-artifact@v2.2.4
