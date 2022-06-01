@@ -35,7 +35,7 @@ jobs:
 
       - name: test coinwatch shell script
         run: |
-          ./coinwatch.sh
+          ls && ./coinwatch.sh
 
   test-prelease:
     runs-on: ubuntu-latest
