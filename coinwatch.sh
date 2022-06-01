@@ -61,7 +61,7 @@ message="$(mktemp)"
 
 coinwatch >> $message
 
-if [ -s message ]; then
+if [ -s $message ]; then
   message_header="New crypto currencies on: $date_today"
   echo $message_header && cat $message
 else
