@@ -35,7 +35,7 @@ jobs:
 
       - name: test coinwatch shell script
         run: |
-          ls && ./coinwatch.sh
+          ./coinwatch.sh
 
   test-prelease:
     runs-on: ubuntu-latest
@@ -55,7 +55,7 @@ jobs:
         run: |
           release_tag=${{ steps.getlatesttag.outputs.tag }}
           echo "[DEBUG] VERSION_RELEASE_TAG=$release_tag"
-          echo "ARTIFACT_NAME=${{ env.NAME_OF_PROGRAM }}-$release_tag" >> $GITHUB_ENV
+          echo "ARTIFACT_NAME=${{ env.NAME_OF_PROGRAM }}-binary-$release_tag" >> $GITHUB_ENV
 
       - name: get release download artifact
         uses: dawidd6/action-download-artifact@v2.14.1
