@@ -37,7 +37,7 @@ jobs:
 
       - name: set execute permissions on prebuild binary
         run: |
-          chmod +x ${{ env.NAME_OF_PROGRAM }}
+          chmod +x ./${{ env.NAME_OF_PROGRAM }}
           ls -lh
 
       - name: storing prebuild as artifact
