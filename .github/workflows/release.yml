@@ -40,7 +40,7 @@ jobs:
           chmod +x ./${{ env.NAME_OF_PROGRAM }}
           ls -lh
 
-      - name: storing prebuild as artifact
+      - name: storing prebuild as an artifact
         uses: actions/upload-artifact@v2.2.4
         with:
           name: ${{ env.NAME_OF_PROGRAM }}-binary-${{ env.VERSION_RELEASE_TAG }}
@@ -54,3 +54,7 @@ jobs:
           asset_name: ${{ env.NAME_OF_PROGRAM }}-${{ env.VERSION_RELEASE_TAG }}
           tag: ${{ env.VERSION_RELEASE_TAG }}
           prerelease: true
+
+      - name: see permission of the binary
+        run: |
+          ls -lh
