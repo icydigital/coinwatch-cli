@@ -6,6 +6,8 @@
 ./coinwatch
 ```
 
+## Use Cases
+
 ### cronjob
 
 add daily cron job
