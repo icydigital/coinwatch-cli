@@ -65,6 +65,7 @@ jobs:
 
       - name: test release
         run: |
+          ls -lh
           chmod +x ./${{ env.NAME_OF_PROGRAM }}
           ls -lh
           ./${{ env.NAME_OF_PROGRAM }}
