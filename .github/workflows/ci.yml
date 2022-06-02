@@ -66,4 +66,6 @@ jobs:
       - name: test release
         run: |
           ls -lh
-          coinwatch
+          chmod +x ./${{ env.NAME_OF_PROGRAM }}
+
+          ./${{ env.NAME_OF_PROGRAM }}
