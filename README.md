@@ -3,7 +3,7 @@
 # coinwatch-cli
 
 ```
-./coinwatch
+chmod +x ./coinwatch && ./coinwatch
 ```
 
 ## Use Cases

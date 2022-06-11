@@ -2,8 +2,6 @@ name: release
 
 on:
   push:
-    paths:
-    - ".github/workflows/release.yml"
     tags:
       - 'v*'
 
