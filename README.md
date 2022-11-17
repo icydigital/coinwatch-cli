@@ -2,6 +2,8 @@
 
 # coinwatch-cli
 
+wip
+
 ```
 chmod +x ./coinwatch && ./coinwatch
 ```
