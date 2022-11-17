@@ -27,7 +27,8 @@ jobs:
           test_get_exchanges_coinapi_200
           test_get_exchanges_nomics_200
           test_get_exchanges_messari_200
-          test_coinwatch
+          test_coinwatch_sh
+          test_coinwatch_history_sh
 
       - name: test coinwatch shell script
         run: |
