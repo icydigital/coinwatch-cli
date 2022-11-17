@@ -21,7 +21,7 @@ crontab -e
 
 <!--
 APIs:
-- Coinapi
-- Nomics
-- Messari
+- Coinapi test_get_exchanges_coinapi_200
+- Nomics test_get_exchanges_nomics_200
+- Messari test_get_exchanges_messari_200
  -->

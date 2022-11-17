@@ -25,7 +25,6 @@ jobs:
           source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
           source ./test_suite.sh
           test_get_exchanges_coinapi_200
-#          test_get_exchanges_nomics_200
           test_get_exchanges_messari_200
 
       - name: test coinwatch shell script
