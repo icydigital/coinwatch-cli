@@ -63,7 +63,7 @@ jobs:
       - name: get release from release registry
         run: gh release download ${{ env.RELEASE_TAG }}
         env:
-          GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: test release
         run: |
