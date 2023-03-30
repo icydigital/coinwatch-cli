@@ -64,7 +64,7 @@ jobs:
 
       - name: test release
         run: |
-          ls -lh
+          ls -Rlh
           chmod +x ./${{ env.ARTIFACT_NAME }}
           ls -lh
           ./${{ env.ARTIFACT_NAME }}
