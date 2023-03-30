@@ -5,7 +5,7 @@
 wip
 
 ```
-chmod +x ./coinwatch && ./coinwatch
+./coinwatch
 ```
 
 ## Use Cases

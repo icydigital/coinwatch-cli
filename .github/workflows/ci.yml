@@ -17,6 +17,10 @@ jobs:
       - name: clone the repo
         uses: actions/checkout@v2.3.4
 
+      - name: install notification dep
+        run: |
+          sudo apt-get install libnotify-bin
+
       - name: test coinwatch apis
         env:
           X_COIN_API_KEY: ${{ secrets.X_COIN_API_KEY }}
