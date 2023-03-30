@@ -7,9 +7,6 @@ on:
     - "coinwatch.sh"
     - "test_suite.sh"
 
-env:
-  NAME_OF_PROGRAM: coinwatch
-
 jobs:
   test-sh:
     runs-on: ubuntu-latest
@@ -49,7 +46,7 @@ jobs:
         id: getlatesttag
         uses: "oprypin/find-latest-tag@v1"
         with:
-          repository: icydigital/${{ env.NAME_OF_PROGRAM }}-cli
+          repository: icydigital/coinwatch-cli
           releases-only: true
 
       - name: create the environment
@@ -57,7 +54,7 @@ jobs:
           release_tag=${{ steps.getlatesttag.outputs.tag }}
           echo "[DEBUG] VERSION_RELEASE_TAG=$release_tag"
 
-          echo "ARTIFACT_NAME=${{ env.NAME_OF_PROGRAM }}-$release_tag" >> $GITHUB_ENV
+          echo "ARTIFACT_NAME=coinwatch-$release_tag" >> $GITHUB_ENV
           echo "RELEASE_TAG=$release_tag" >> $GITHUB_ENV
 
       - name: get release from release registry
@@ -67,8 +64,7 @@ jobs:
 
       - name: test release
         run: |
-          ls -lh && mkdir pre_release
-          unzip -d /pre_release ${{ env.ARTIFACT_NAME }}
-          chmod +x ./${{ env.NAME_OF_PROGRAM }}
           ls -lh
-          ./${{ env.NAME_OF_PROGRAM }}
+          chmod +x ./${{ env.ARTIFACT_NAME }}
+          ls -lh
+          ./${{ env.ARTIFACT_NAME }}
