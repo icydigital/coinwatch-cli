@@ -65,7 +65,7 @@ if [ -s $message ]; then
   message_header="New crypto currencies on: $date_today"
   echo $message_header && cat $message
 else
-  message_header="--- No new crypto currencies on $date_today ---"
+  message_header="--- No new crypto currencies on $date_today    ---"
   echo $message_header
 fi
 # notify-send "$(echo $message_header)" "$(cat "$message")"
