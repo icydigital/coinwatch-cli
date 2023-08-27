@@ -46,13 +46,3 @@ test_coinwatch_sh() {
 
   cat $resp_body
 }
-
-test_coinwatch_history_sh() {
-  printf "test_coinwatch_history_sh\n"
-  resp_body="$(mktemp)"
-
-  curl -s https://raw.githubusercontent.com/icydigital/coinwatch-cli/main/coinwatch_history.sh \
-  | bash -s >> $resp_body
-
-  cat $resp_body
-}
