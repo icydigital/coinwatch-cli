@@ -40,21 +40,21 @@ jobs:
           chmod +x ./${{ env.NAME_OF_PROGRAM }}
           ls -lh
 
-      - name: storing prebuild as an artifact
-        uses: actions/upload-artifact@v2.2.4
-        with:
-          name: ${{ env.NAME_OF_PROGRAM }}-binary-${{ env.VERSION_RELEASE_TAG }}
-          path: ${{ env.NAME_OF_PROGRAM }}
-
-      - name: upload prebuild artifact to github release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.G_TOKEN }}
-          file: ${{ env.NAME_OF_PROGRAM }}
-          asset_name: ${{ env.NAME_OF_PROGRAM }}-${{ env.VERSION_RELEASE_TAG }}
-          tag: ${{ env.VERSION_RELEASE_TAG }}
-          prerelease: true
-
-      - name: see permission of the binary
-        run: |
-          ls -lh
+      # - name: storing prebuild as an artifact
+      #   uses: actions/upload-artifact@v2.2.4
+      #   with:
+      #     name: ${{ env.NAME_OF_PROGRAM }}-binary-${{ env.VERSION_RELEASE_TAG }}
+      #     path: ${{ env.NAME_OF_PROGRAM }}
+      #
+      # - name: upload prebuild artifact to github release
+      #   uses: svenstaro/upload-release-action@v2
+      #   with:
+      #     repo_token: ${{ secrets.G_TOKEN }}
+      #     file: ${{ env.NAME_OF_PROGRAM }}
+      #     asset_name: ${{ env.NAME_OF_PROGRAM }}-${{ env.VERSION_RELEASE_TAG }}
+      #     tag: ${{ env.VERSION_RELEASE_TAG }}
+      #     prerelease: true
+      #
+      # - name: see permission of the binary
+      #   run: |
+      #     ls -lh
