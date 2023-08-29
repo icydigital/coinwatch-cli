@@ -1,5 +1,4 @@
 #!/bin/bash
-source .env
 date_today=$(date +"%Y-%m-%d")
 
 watch_cmc () {
