@@ -1,4 +1,6 @@
 #!/bin/bash
+source .env
+
 date_today=$(date +"%Y-%m-%d")
 
 watch_cmc () {
@@ -74,7 +76,7 @@ get_coins () {
   # watch_nomics $date_today
   watch_cmc $date_today
   watch_massari $date_today
-  cat "$resp_body_cmc" "$resp_body_nomics" "$resp_body_massari" | sort >> $resp_body
+  cat "$resp_body_cmc" "$resp_body_nomics" "$resp_body_massari" | sort | awk NF >> $resp_body
 }
 
 coinwatch () {
