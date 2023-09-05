@@ -1,6 +1,6 @@
 #!/bin/bash
-# source .env # enable only for local testing
-
+source .env
+# enable only for local testing
 date_today=$(date +"%Y-%m-%d")
 
 watch_cmc () {
@@ -73,9 +73,8 @@ watch_massari () {
 
 get_coins () {
   resp_body="$(mktemp)"
-  # watch_nomics $date_today
-  watch_cmc $date_today
-  watch_massari $date_today
+  watch_cmc
+  watch_massari
   cat "$resp_body_cmc" "$resp_body_nomics" "$resp_body_massari" | sort | awk NF >> $resp_body
 }
 
@@ -91,7 +90,7 @@ coinwatch >> $message
 
 if [ -s $message ]; then
   message_header="New crypto currencies introduced today: $date_today"
-  echo $message_header && cat $message
+  echo $message_header && cat "$message"
 else
   message_header="-- - No new crypto currencies on $date_today ---"
   echo $message_header
