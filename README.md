@@ -6,7 +6,10 @@ wip
 
 
 APIs:
-https://coindar.org/en/api
+Binance API -
+https://coindar.org/en/api - weak, no ICO info
+https://polygon.io/docs/stocks - 
+
 
 <!-- **old**
 - Coinapi test_get_exchanges_coinapi_200
