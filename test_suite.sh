@@ -42,7 +42,7 @@ test_get_list_of_coins_cmc_sandbox_200() {
 
   resp_head="$(mktemp)"
 
-  curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
+  curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_SANDBOX_API_KEY" \
     -H "Accept: application/json" \
     -D $resp_head \
     -G https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest
