@@ -37,6 +37,19 @@ test_get_exchanges_messari_200() {
   assert_status $resp_head 200
 }
 
+test_get_list_of_coins_cmc_sandbox_200() {
+  printf "test_get_list_of_coins_200\n"
+
+  resp_head="$(mktemp)"
+
+  curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
+    -H "Accept: application/json" \
+    -D $resp_head \
+    -G https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest
+
+    assert_status $resp_head 200
+}
+
 test_coinwatch_sh() {
   printf "test_coinwatch_sh\n"
   resp_body="$(mktemp)"
