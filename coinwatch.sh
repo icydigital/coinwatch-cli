@@ -1,5 +1,5 @@
 #!/bin/bash
-source .env
+# source .env
 # enable only for local testing
 date_today=$(date +"%Y-%m-%d")
 

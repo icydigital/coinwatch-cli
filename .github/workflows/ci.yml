@@ -25,7 +25,6 @@ jobs:
       - name: test coinwatch apis
         run: |
           source .env
-          source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
           source ./test_suite.sh
           test_get_list_of_coins_cmc_sandbox_200
 
