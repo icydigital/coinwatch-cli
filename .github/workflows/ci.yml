@@ -24,8 +24,8 @@ jobs:
 
       - name: test coinwatch apis
         run: |
+          source test_suite.sh
           source .env
-          source ./test_suite.sh
           test_get_list_of_coins_cmc_sandbox_200
 
       # - name: test coinwatch shell script
