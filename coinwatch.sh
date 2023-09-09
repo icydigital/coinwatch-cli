@@ -1,7 +1,5 @@
 #!/bin/bash
-# source .env
-# enable only for local testing
-# date_today=$(date +"%Y-%m-%d")
+# source .env # enable only for local testing
 
 get_coins_cmc () {
   resp_head="$(mktemp)"
@@ -34,19 +32,18 @@ coinwatch () {
   cat "$resp_body"
 }
 
-message_header="New coins on: $date_today"
 message="$(mktemp)"
 if [ -z "$1" ]; then
   coinwatch >> $message
-else
-  coinwatch $1 >> $message
-fi
-
-if [ -s $message ]; then
-  message_header="New crypto currencies introduced today: $date_today"
+  message_header="Cryptocurrency history by date:"
   echo $message_header && cat "$message"
 else
-  message_header="-- - No new crypto currencies on $date_today ---"
-  echo $message_header
+  coinwatch $1 >> $message
+  if [ -s $message ]; then
+    message_header="New crypto currencies introduced today: $1"
+    echo $message_header && cat "$message"
+  else
+    message_header="-- - No new crypto currencies on $1 ---"
+    echo $message_header
+  fi
 fi
-# notify-send "$(echo $message_header)" "$(cat "$message")"
