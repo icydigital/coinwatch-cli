@@ -48,7 +48,22 @@ test_get_list_of_coins_cmc_sandbox_200() {
   curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_SANDBOX_API_KEY" \
     -H "Accept: application/json" \
     -D $resp_head \
-    -G https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest
+    -G https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/map | \
+    jq -r '.data | .[] | .name + " " + .first_historical_data'
+
+    assert_status $resp_head 200
+}
+
+test_get_list_of_coins_cmc_pro_api_200() {
+  printf "test_get_list_of_coins_cmc_pro_api_200\n"
+
+  resp_head="$(mktemp)"
+
+  curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
+    -H "Accept: application/json" \
+    -D $resp_head \
+    -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
+    jq -r '.data | .[] | .name + " " + .first_historical_data'
 
     assert_status $resp_head 200
 }
