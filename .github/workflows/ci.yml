@@ -18,12 +18,9 @@ jobs:
         run: |
           sudo apt-get install libnotify-bin
 
-      - name: create env file
-        run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
-
       - name: test coinwatch apis
         run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
           source test_suite.sh
           source .env
           test_get_list_of_coins_cmc_sandbox_200
