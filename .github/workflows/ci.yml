@@ -14,23 +14,13 @@ jobs:
       - name: clone the repo
         uses: actions/checkout@v2.3.4
 
-      - name: install notification dep
-        run: |
-          sudo apt-get install libnotify-bin
-
       - name: test coinwatch apis
+        env:
+          X_CMC_PRO_SANDBOX_API_KEY: ${{ secrets.X_CMC_PRO_SANDBOX_API_KEY }}      
         run: |
           echo "${{ secrets.ENV_FILE }}" > .env
           source test_suite.sh
-          source .env
           test_get_list_of_coins_cmc_sandbox_200
-
-      # - name: test coinwatch shell script
-      #   run: |
-      #     source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/bashert.sh)
-      #     source ./test_suite.sh
-      #     test_coinwatch_sh
-      #     test_coinwatch_sh 2021-08-09
 
   test-prelease:
     runs-on: ubuntu-latest

@@ -6,8 +6,8 @@ wip
 
 
 APIs:
-CoinMarketCap - 
-Binance API -
+CoinMarketCap -
+Binance API -  
 https://coindar.org/en/api - weak, no ICO info
 https://polygon.io/docs/stocks -
 
