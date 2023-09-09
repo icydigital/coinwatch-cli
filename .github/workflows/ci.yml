@@ -27,8 +27,11 @@ jobs:
         env:
           X_CMC_PRO_API_KEY: ${{ secrets.X_CMC_PRO_API_KEY }}
         run: |
+          echo "#### date argument ####"
           ./coinwatch.sh
+          echo "#### no date argument ####"
           ./coinwatch.sh 2023-08-07
+
   # test-prelease:
   #   runs-on: ubuntu-latest
   #   needs: test-sh
