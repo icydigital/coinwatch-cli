@@ -35,7 +35,7 @@ coinwatch () {
 message="$(mktemp)"
 if [ -z "$1" ]; then
   coinwatch >> $message
-  message_header="Cryptocurrency history by date:"
+  message_header="Cryptocurrencies by first available date:"
   echo $message_header && cat "$message"
 else
   coinwatch $1 >> $message
