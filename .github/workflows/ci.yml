@@ -19,11 +19,16 @@ jobs:
           X_CMC_PRO_SANDBOX_API_KEY: ${{ secrets.X_CMC_PRO_SANDBOX_API_KEY }}
           X_CMC_PRO_API_KEY: ${{ secrets.X_CMC_PRO_API_KEY }}
         run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
           source test_suite.sh
           test_get_list_of_coins_cmc_sandbox_200
           test_get_list_of_coins_cmc_pro_api_200
 
+      - name: test coinwatch apis
+        env:
+          X_CMC_PRO_API_KEY: ${{ secrets.X_CMC_PRO_API_KEY }}
+        run: |
+          source coinwatch.sh
+          ./coinwatch.sh
   # test-prelease:
   #   runs-on: ubuntu-latest
   #   needs: test-sh
