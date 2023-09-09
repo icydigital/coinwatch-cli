@@ -7,7 +7,14 @@ get_coins_cmc () {
   resp_head="$(mktemp)"
   resp_body="$(mktemp)"
 
-    if [[ -v $1 ]]; then
+    if [ -z "$1" ]; then
+      curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
+        -H "Accept: application/json" \
+        -D $resp_head \
+        -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
+        jq -r '.data | .[] | .name + " " + .first_historical_data'
+       >> $resp_body
+    else
       curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
         -H "Accept: application/json" \
         -D $resp_head \
@@ -15,31 +22,24 @@ get_coins_cmc () {
         jq -r '.data | .[] | .name + " " + .first_historical_data' | \
         grep "$1"
        >> $resp_body
-    else
-      curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
-        -H "Accept: application/json" \
-        -D $resp_head \
-        -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
-        jq -r '.data | .[] | .name + " " + .first_historical_data'
-       >> $resp_body
     fi
 }
 
 coinwatch () {
-  if [[ -v $1 ]]; then
-    get_coins_cmc $1
-  else
+  if [ -z "$1" ]; then
     get_coins_cmc
+  else
+    get_coins_cmc $1
   fi
   cat "$resp_body"
 }
 
 message_header="New coins on: $date_today"
 message="$(mktemp)"
-if [[ -v $1 ]]; then
-  coinwatch $1 >> $message
-else
+if [ -z "$1" ]; then
   coinwatch >> $message
+else
+  coinwatch $1 >> $message
 fi
 
 if [ -s $message ]; then
