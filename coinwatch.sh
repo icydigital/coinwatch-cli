@@ -3,29 +3,6 @@
 # enable only for local testing
 # date_today=$(date +"%Y-%m-%d")
 
-# watch_cmc () {
-#   resp_head="$(mktemp)"
-#   resp_body="$(mktemp)"
-#
-#   # if [[ -v $1 ]]; then
-#     curl -sS "https://data.messari.io/api/v2/assets" \
-#       -X GET \
-#       -D $resp_head_massari | \
-#       jq -r '.data | .[].name + " " + .[].profile.economics.launch.initial_distribution.token_distribution_date' | \
-#       grep "$1" | \
-#       rev | cut -c11- | rev \
-#     >> $resp_body_massari
-#   # else
-#     curl -sS "https://data.messari.io/api/v2/assets" \
-#       -X GET \
-#       -D $resp_head_massari | \
-#       jq -r '.data | .[].name + " " + .[].profile.economics.launch.initial_distribution.token_distribution_date' | \
-#       # grep "$date_today" | \
-#       rev | cut -c11- | rev \
-#     # >> $resp_body_massari
-#   fi
-# }
-
 get_coins_cmc () {
   resp_head="$(mktemp)"
   resp_body="$(mktemp)"
@@ -35,7 +12,7 @@ get_coins_cmc () {
         -H "Accept: application/json" \
         -D $resp_head \
         -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
-        jq -r '.data | .[] | .name + " " + .first_historical_data'
+        jq -r '.data | .[] | .name + " " + .first_historical_data' | \
         grep "$1"
        >> $resp_body
     else
@@ -43,17 +20,10 @@ get_coins_cmc () {
         -H "Accept: application/json" \
         -D $resp_head \
         -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
-        jq -r '.data | .[] | .name + " " + .first_historical_data' | \
+        jq -r '.data | .[] | .name + " " + .first_historical_data'
        >> $resp_body
     fi
 }
-
-# get_coins () {
-#   resp_body="$(mktemp)"
-#   watch_cmc
-#   watch_massari
-#   cat "$resp_body_cmc" "$resp_body_nomics" "$resp_body_massari" | sort | awk NF >> $resp_body
-# }
 
 coinwatch () {
   if [[ -v $1 ]]; then
@@ -66,8 +36,11 @@ coinwatch () {
 
 message_header="New coins on: $date_today"
 message="$(mktemp)"
-
-coinwatch >> $message
+if [[ -v $1 ]]; then
+  coinwatch $1 >> $message
+else
+  coinwatch >> $message
+fi
 
 if [ -s $message ]; then
   message_header="New crypto currencies introduced today: $date_today"

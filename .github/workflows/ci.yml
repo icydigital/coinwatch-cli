@@ -27,8 +27,8 @@ jobs:
         env:
           X_CMC_PRO_API_KEY: ${{ secrets.X_CMC_PRO_API_KEY }}
         run: |
-          source coinwatch.sh
-          coinwatch
+          ./coinwatch.sh
+          ./coinwatch.sh 2023-08-07
   # test-prelease:
   #   runs-on: ubuntu-latest
   #   needs: test-sh
