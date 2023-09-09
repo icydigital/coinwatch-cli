@@ -35,7 +35,7 @@ source <(curl -sSf https://raw.githubusercontent.com/chiefbiiko/bashert/v1.0.1/b
 #
 #   curl -sS "https://data.messari.io/api/v2/assets" \
 #     -D $resp_head \
-#   >> /dev/null
+#    >> /dev/null
 #
 #   assert_status $resp_head 200
 # }
@@ -50,8 +50,9 @@ test_get_list_of_coins_cmc_sandbox_200() {
     -D $resp_head \
     -G https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/map | \
     jq -r '.data | .[] | .name + " " + .first_historical_data'
+   >> /dev/null
 
-    assert_status $resp_head 200
+   assert_status $resp_head 200
 }
 
 test_get_list_of_coins_cmc_pro_api_200() {
@@ -64,6 +65,7 @@ test_get_list_of_coins_cmc_pro_api_200() {
     -D $resp_head \
     -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
     jq -r '.data | .[] | .name + " " + .first_historical_data'
+   >> /dev/null
 
     assert_status $resp_head 200
 }

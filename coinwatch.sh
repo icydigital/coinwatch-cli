@@ -1,85 +1,52 @@
 #!/bin/bash
 # source .env
 # enable only for local testing
-date_today=$(date +"%Y-%m-%d")
+# date_today=$(date +"%Y-%m-%d")
 
-watch_cmc () {
-  resp_head_cmc="$(mktemp)"
-  resp_body_cmc="$(mktemp)"
+# watch_cmc () {
+#   resp_head="$(mktemp)"
+#   resp_body="$(mktemp)"
+#
+#   # if [[ -v $1 ]]; then
+#     curl -sS "https://data.messari.io/api/v2/assets" \
+#       -X GET \
+#       -D $resp_head_massari | \
+#       jq -r '.data | .[].name + " " + .[].profile.economics.launch.initial_distribution.token_distribution_date' | \
+#       grep "$1" | \
+#       rev | cut -c11- | rev \
+#     >> $resp_body_massari
+#   # else
+#     curl -sS "https://data.messari.io/api/v2/assets" \
+#       -X GET \
+#       -D $resp_head_massari | \
+#       jq -r '.data | .[].name + " " + .[].profile.economics.launch.initial_distribution.token_distribution_date' | \
+#       # grep "$date_today" | \
+#       rev | cut -c11- | rev \
+#     # >> $resp_body_massari
+#   fi
+# }
 
-  if [[ -v $1 ]]; then
-    curl -sS "https://rest.coinapi.io/v1/exchanges" \
-      -X GET \
-      --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
-      -D $resp_head_cmc | \
-      jq -r '.[] | .name + " " + .data_start' | \
-      grep "$date_today" \
-    >> $resp_body_cmc
-  else
-    curl -sS "https://rest.coinapi.io/v1/exchanges" \
-      -X GET \
-      --header "X-CoinAPI-Key: $X_COIN_API_KEY" \
-      -D $resp_head_cmc | \
-      jq -r '.[] | .name + " " + .data_start' \
-    >> $resp_body_cmc
-  fi
-}
-
-watch_nomics () {
-  resp_head_nomics="$(mktemp)"
-  resp_body_nomics="$(mktemp)"
-
-  if [[ -v $1 ]]; then
-    curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
-      -X GET \
-      -D $resp_head_nomics | \
-      jq -r '.[] | select(.first_trade != null) | .name + " " + .first_trade' | \
-      grep "$date_today" | \
-      rev | cut -c11- | rev \
-    >> $resp_body_nomics
-  else
-    curl -sS "https://api.nomics.com/v1/currencies/ticker?key=$NOMICS_API_KEY" \
-      -X GET \
-      -D $resp_head_nomics | \
-      jq -r '.[] | select(.first_trade != null) | .name + " " + .first_trade' | \
-      # grep "$date_today" | \
-      rev | cut -c11- | rev \
-    >> $resp_body_nomics
-  fi
-}
-
-watch_massari () {
-  resp_head_massari="$(mktemp)"
-  resp_body_massari="$(mktemp)"
-
-  if [[ -v $1 ]]; then
-    curl -sS "https://data.messari.io/api/v2/assets" \
-      -X GET \
-      -D $resp_head_massari | \
-      jq -r '.data | .[].name + " " + .[].profile.economics.launch.initial_distribution.token_distribution_date' | \
-      grep "$date_today" | \
-      rev | cut -c11- | rev \
-    >> $resp_body_massari
-  else
-    curl -sS "https://data.messari.io/api/v2/assets" \
-      -X GET \
-      -D $resp_head_massari | \
-      jq -r '.data | .[].name + " " + .[].profile.economics.launch.initial_distribution.token_distribution_date' | \
-      # grep "$date_today" | \
-      rev | cut -c11- | rev \
-    >> $resp_body_massari
-  fi
-}
-
-get_coins () {
+get_coins_cmc () {
+  resp_head="$(mktemp)"
   resp_body="$(mktemp)"
-  watch_cmc
-  watch_massari
-  cat "$resp_body_cmc" "$resp_body_nomics" "$resp_body_massari" | sort | awk NF >> $resp_body
+
+  curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
+    -H "Accept: application/json" \
+    -D $resp_head \
+    -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
+    jq -r '.data | .[] | .name + " " + .first_historical_data'
+   >> $resp_body
 }
+
+# get_coins () {
+#   resp_body="$(mktemp)"
+#   watch_cmc
+#   watch_massari
+#   cat "$resp_body_cmc" "$resp_body_nomics" "$resp_body_massari" | sort | awk NF >> $resp_body
+# }
 
 coinwatch () {
-  get_coins $date_today
+  get_coins_cmc
   cat "$resp_body"
 }
 
