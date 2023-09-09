@@ -23,12 +23,12 @@ jobs:
           test_get_list_of_coins_cmc_sandbox_200
           test_get_list_of_coins_cmc_pro_api_200
 
-      - name: test coinwatch apis
+      - name: test coinwatch script
         env:
           X_CMC_PRO_API_KEY: ${{ secrets.X_CMC_PRO_API_KEY }}
         run: |
           source coinwatch.sh
-          ./coinwatch.sh
+          coinwatch
   # test-prelease:
   #   runs-on: ubuntu-latest
   #   needs: test-sh

@@ -30,12 +30,22 @@ get_coins_cmc () {
   resp_head="$(mktemp)"
   resp_body="$(mktemp)"
 
-  curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
-    -H "Accept: application/json" \
-    -D $resp_head \
-    -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
-    jq -r '.data | .[] | .name + " " + .first_historical_data'
-   >> $resp_body
+    if [[ -v $1 ]]; then
+      curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
+        -H "Accept: application/json" \
+        -D $resp_head \
+        -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
+        jq -r '.data | .[] | .name + " " + .first_historical_data'
+        grep "$1"
+       >> $resp_body
+    else
+      curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
+        -H "Accept: application/json" \
+        -D $resp_head \
+        -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
+        jq -r '.data | .[] | .name + " " + .first_historical_data' | \
+       >> $resp_body
+    fi
 }
 
 # get_coins () {
@@ -46,7 +56,11 @@ get_coins_cmc () {
 # }
 
 coinwatch () {
-  get_coins_cmc
+  if [[ -v $1 ]]; then
+    get_coins_cmc $1
+  else
+    get_coins_cmc
+  fi
   cat "$resp_body"
 }
 
