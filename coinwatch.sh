@@ -2,24 +2,24 @@
 # source .env # enable only for local testing
 
 get_coins_cmc () {
-  resp_head="$(mktemp)"
-  resp_body="$(mktemp)"
+  cmc_resp_head="$(mktemp)"
+  cmc_resp_body="$(mktemp)"
 
     if [ -z "$1" ]; then
       curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
         -H "Accept: application/json" \
-        -D $resp_head \
+        -D $cmc_resp_head \
         -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
         jq -r '.data | .[] | .name + " " + .first_historical_data'
-       >> $resp_body
+       >> $cmc_resp_body
     else
       curl -H "X-CMC_PRO_API_KEY: $X_CMC_PRO_API_KEY" \
         -H "Accept: application/json" \
-        -D $resp_head \
+        -D $cmc_resp_head \
         -G https://pro-api.coinmarketcap.com/v1/cryptocurrency/map | \
         jq -r '.data | .[] | .name + " " + .first_historical_data' | \
         grep "$1"
-       >> $resp_body
+       >> $cmc_resp_body
     fi
 }
 
@@ -29,21 +29,30 @@ coinwatch () {
   else
     get_coins_cmc $1
   fi
-  cat "$resp_body"
+  cat "$cmc_resp_body"
 }
 
-message="$(mktemp)"
+resp_body="$(mktemp)"
 if [ -z "$1" ]; then
-  coinwatch >> $message
-  message_header="Cryptocurrencies by first available date:"
-  echo $message_header && cat "$message"
+  coinwatch >> $payload
+  payload_message="Cryptocurrencies by first available date:"
+  # echo $payload_message && cat "$payload"
 else
-  coinwatch $1 >> $message
-  if [ -s $message ]; then
-    message_header="New crypto currencies introduced today: $1"
-    echo $message_header && cat "$message"
+  coinwatch $1 >> $payload
+  if [ -s $payload ]; then
+    payload_message="New crypto currencies introduced today: $1"
+    # echo $payload_message && cat "$payload"
   else
-    message_header="-- - No new crypto currencies on $1 ---"
-    echo $message_header
+    payload_message="-- - No new crypto currencies on $1 ---"
+    # echo $payload_message
   fi
 fi
+
+RESP_BODY=$(jq --null-input \
+  --arg payload_message "$payload_message" \
+  --arg payload "$payload" \
+  '{"payload_message": $payload_message, "payload": $payload}')
+
+
+echo "JSON response body"
+echo $RESP_BODY
