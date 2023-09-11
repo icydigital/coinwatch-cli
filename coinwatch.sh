@@ -39,7 +39,7 @@ if [ -z "$1" ]; then
   # echo $payload_message && cat "$payload"
 else
   coinwatch $1 >> "$payload"
-  if [ -s $payload ]; then
+  if [ -z "$payload" ]; then
     payload_message="New crypto currencies introduced today: $1"
     # echo $payload_message && cat "$payload"
   else
