@@ -49,9 +49,9 @@ else
 fi
 
 RESP_BODY=$(jq --null-input \
-  --arg payload_message "$payload_message" \
-  --arg payload "$payload" \
-  '{"payload_message": $payload_message, "payload": $payload}')
+  --arg message "$payload_message" \
+  --arg result "$payload" \
+  '{"payload_message": $message, "payload": $result}')
 
 
 echo "JSON response body"
