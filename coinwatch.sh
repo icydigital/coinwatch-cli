@@ -54,5 +54,4 @@ RESP_BODY=$(jq --null-input \
   '{"payload_message": $message, "payload": $result}')
 
 
-echo "JSON response body"
 echo $RESP_BODY
