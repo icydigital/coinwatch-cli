@@ -34,11 +34,11 @@ coinwatch () {
 
 resp_body="$(mktemp)"
 if [ -z "$1" ]; then
-  coinwatch >> "$payload"
+  payload=$(coinwatch)
   payload_message="Cryptocurrencies by first available date:"
   # echo $payload_message && cat "$payload"
 else
-  coinwatch $1 >> "$payload"
+  payload=$(coinwatch $1)
   if [ -z "$payload" ]; then
     payload_message="New crypto currencies introduced today: $1"
     # echo $payload_message && cat "$payload"
