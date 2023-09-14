@@ -32,26 +32,26 @@ coinwatch () {
   cat "$cmc_resp_body"
 }
 
-resp_body="$(mktemp)"
-if [ -z "$1" ]; then
-  payload=$(coinwatch)
-  payload_message="Cryptocurrencies by first available date:"
-  # echo $payload_message && cat "$payload"
-else
-  payload=$(coinwatch $1)
-  if [ -z "$payload" ]; then
-    payload_message="New crypto currencies introduced today: $1"
-    # echo $payload_message && cat "$payload"
+main () {
+  if [ -z "$1" ]; then
+    payload=$(coinwatch)
+    payload_message="Cryptocurrencies by first available date:"
   else
-    payload_message="-- - No new crypto currencies on $1 ---"
-    # echo $payload_message
+    payload=$(coinwatch $1)
+    payload_message="Cryptocurrencies by date $1:"
   fi
+
+  RESP_BODY=$(jq --null-input \
+    --arg message "$payload_message" \
+    --arg result "$payload" \
+    '{"payload_message": $message, "payload": $result}')
+
+  echo $RESP_BODY
+
+}
+
+if [ -z "$1" ]; then
+  main
+else
+  main $1
 fi
-
-RESP_BODY=$(jq --null-input \
-  --arg message "$payload_message" \
-  --arg result "$payload" \
-  '{"payload_message": $message, "payload": $result}')
-
-
-echo $RESP_BODY
