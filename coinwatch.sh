@@ -43,8 +43,8 @@ main () {
 
   RESP_BODY=$(jq --null-input \
     --arg message "$payload_message" \
-    --arg result "$payload" \
-    '{"payload_message": $message, "payload": $result}')
+    --arg data "$payload" \
+    '{"message": $message, "data": $data}')
 
   echo $RESP_BODY
 
