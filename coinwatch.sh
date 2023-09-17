@@ -40,6 +40,7 @@ main () {
     payload=$(coinwatch $1)
     payload_message="Cryptocurrencies by date $1:"
   fi
+  printf "$payload"
 
   RESP_BODY=$(jq --null-input \
     --arg message "$payload_message" \
