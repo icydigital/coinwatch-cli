@@ -41,6 +41,8 @@ main () {
     payload_message="Cryptocurrencies by date $1:"
   fi
 
+  echo "DEBUG payload: $payload"
+
   RESP_BODY=$(jq --null-input \
     --arg message "$payload_message" \
     --arg load "$payload" \
