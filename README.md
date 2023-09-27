@@ -1,12 +1,15 @@
-[![ci](https://github.com/icydigital/coinwatch-cli/workflows/ci/badge.svg)](https://github.com/icydigital/coinwatch-cli/actions)[![release](https://github.com/icydigital/coinwatch-cli/workflows/release/badge.svg)](https://github.com/icydigital/coinwatch-cli/actions)
+[![ci](https://github.com/icydigital/coinwatch-cli/workflows/ci/badge.svg)](https://github.com/icydigital/coinwatch-cli/actions)
 
 # coinwatch-cli
 
 wip
 
 
-APIs:
+used API:
 CoinMarketCap -
+
+
+observable APIs
 Binance API -  
 https://coindar.org/en/api - weak, no ICO info
 https://polygon.io/docs/stocks -

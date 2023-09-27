@@ -32,36 +32,3 @@ jobs:
 
           echo "#### no date argument ####"
           ./coinwatch.sh
-  # test-prelease:
-  #   runs-on: ubuntu-latest
-  #   needs: test-sh
-  #   steps:
-  #     - name: clone the repo
-  #       uses: actions/checkout@v2.3.4
-  #
-  #     - name: get latest version release tag
-  #       id: getlatesttag
-  #       uses: "oprypin/find-latest-tag@v1"
-  #       with:
-  #         repository: icydigital/coinwatch-cli
-  #         releases-only: true
-  #
-  #     - name: create the environment
-  #       run: |
-  #         release_tag=${{ steps.getlatesttag.outputs.tag }}
-  #         echo "[DEBUG] VERSION_RELEASE_TAG=$release_tag"
-  #
-  #         echo "ARTIFACT_NAME=coinwatch-$release_tag" >> $GITHUB_ENV
-  #         echo "RELEASE_TAG=$release_tag" >> $GITHUB_ENV
-  #
-  #     - name: get release from release registry
-  #       run: gh release download ${{ env.RELEASE_TAG }}
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #
-  #     - name: test release
-  #       run: |
-  #         ls -Rlh
-  #         chmod +x ./${{ env.ARTIFACT_NAME }}
-  #         ls -lh
-  #         ./${{ env.ARTIFACT_NAME }}
