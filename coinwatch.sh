@@ -35,20 +35,20 @@ coinwatch () {
 main () {
   if [ -z "$1" ]; then
     payload=$(coinwatch)
-    payload_message="Cryptocurrencies by first available date:"
+    payload_message="Cryptocurrencies by first available date: \n"
+
+    RESP_BODY=$(jq --null-input \
+      --arg message "$payload_message" \
+      --arg load "$payload" \
+      '{"message": $message, "load": $load}')
+    echo $RESP_BODY
+
   else
     payload=$(coinwatch $1)
-    payload_message="Cryptocurrencies by date $1:"
+    payload_message="Cryptocurrencies by date $1: \n"
+
+    echo $payload_message + $payload
   fi
-
-  echo "DEBUG payload: $payload"
-
-  RESP_BODY=$(jq --null-input \
-    --arg message "$payload_message" \
-    --arg load "$payload" \
-    '{"message": $message, "load": $load}')
-
-  echo $RESP_BODY
 
 }
 
